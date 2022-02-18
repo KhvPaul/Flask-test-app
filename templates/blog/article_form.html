@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if article %} Update Article {% else %} Add Article {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% if article %} Update Article {% else %} Add Article {% endif %}</h1>
+        <form method="post">
+            <div class="mb-3">
+                <label for="article-title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="article-title" name="article-title"
+                {% if article %} value="{{ article.title }}" {% endif %}>
+            </div>
+            <div class="mb-3">
+                <label for="article-intro" class="form-label">Intro</label>
+                <textarea class="form-control" id="article-intro" name="article-intro">{% if article %}{{ article.intro }}{% endif %}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="article-text" class="form-label">Text</label>
+                <textarea class="form-control" id="article-text" name="article-text">{% if article %}{{ article.text }}{% endif %}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+    Articles
+{% endblock %}
+
+{% block content %}
+    {% if articles %}
+        {% for article in articles %}
+            <div class="col-md-12">
+                <article class="blog-post">
+                    <h2 class="blog-post-title">{{ article.title }}</h2>
+                    <p class="blog-post-meta">{{ article.get_formatted_post_date() }} by <a href="#">Author</a></p>
+                    <p>{{ article.intro }}</p>
+                    <div class="row w-50 ">
+                        <a class="btn btn-info w-25 m-2" href="{{ url_for('get_article', article_id=article.id) }}">Read more</a>
+                    </div>
+                    <hr>
+                </article>
+            </div>
+        {% endfor %}
+        <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+      </nav>
+    {% else %}
+        <div class="container my-5">
+            <h3>There are no articles available in the database yet</h3>
+        </div>
+    {% endif %}
+{% endblock %}

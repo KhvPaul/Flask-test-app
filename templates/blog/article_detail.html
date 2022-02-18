@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+    {{ article.title }}
+{% block content %}
+        <div class="col-md-12">
+            <article class="blog-post">
+                <h2 class="blog-post-title">{{ article.title }}</h2>
+                <p class="blog-post-meta">{{ article.get_formatted_post_date() }} by <a href="#">Author</a></p>
+                <p>{{ article.text }}</p>
+                <div class="row w-50 mb-2">
+                    <a class="btn btn-warning w-25 m-2" href="{{ url_for('update_article', article_id=article.id) }}">Update</a>
+                    <a class="btn btn-danger w-25 m-2" href="{{ url_for('delete_article', article_id=article.id) }}">Delete</a>
+                </div>
+            </article>
+        </div>
+    <nav class="blog-pagination" aria-label="Pagination">
+        <a class="btn btn-outline-primary" href="#">Older</a>
+        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+      </nav>
+{% endblock %}
